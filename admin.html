@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración | D10 Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <div class="logo-icon">D10</div>
+                <span class="logo-text">D10 Solutions</span>
+                <span class="admin-badge">🔒 ADMIN</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="#" class="active">Gestión Servicios</a></li>
+                <li><a href="#">Usuarios</a></li>
+                <li><a href="#">Reportes</a></li>
+            </ul>
+            <div class="user-section">
+                <div class="user-avatar">AD</div>
+                <span>Admin</span>
+                <a href="index.html" class="logout-btn">Cerrar Sesión</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <nav class="breadcrumb-nav">
+            <a href="index.html">Dashboard</a>
+            <span>→</span>
+            <span>Gestión de Servicios</span>
+        </nav>
+    </section>
+
+    <!-- Admin Panel -->
+    <main class="admin-panel">
+        <div class="panel-header">
+            <div class="panel-title">
+                <h1>
+                    <div class="title-icon">⚙️</div>
+                    Gestión de Servicios
+                </h1>
+                <button class="add-service-btn">
+                    <span>➕</span>
+                    Agregar Servicio
+                </button>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <section class="stats-section">
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-icon services">📊</div>
+                </div>
+                <div class="stat-value">10</div>
+                <div class="stat-label">Total Servicios</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-icon active">✅</div>
+                </div>
+                <div class="stat-value">8</div>
+                <div class="stat-label">Servicios Activos</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-icon promotion">🔥</div>
+                </div>
+                <div class="stat-value">3</div>
+                <div class="stat-label">En Promoción</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-icon revenue">💰</div>
+                </div>
+                <div class="stat-value">$2,490</div>
+                <div class="stat-label">Ingresos/Mes (Estimado)</div>
+            </div>
+        </section>
+
+        <!-- Services Table -->
+        <section class="services-table-section">
+            <table class="services-table">
+                <thead>
+                    <tr>
+                        <th>Servicio</th>
+                        <th>Categoría</th>
+                        <th>Precio</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Gestión Comercial" class="service-image">
+                                <span class="service-name">Gestión Comercial</span>
+                            </div>
+                        </td>
+                        <td>CRM y Ventas</td>
+                        <td>$299/mes</td>
+                        <td><span class="status-badge status-active">Activo</span></td>
+                        <td>
+                            <div class="actions-cell">
+                                <button class="action-btn btn-edit" title="Editar">✏️</button>
+                                <button class="action-btn btn-delete" title="Eliminar">🗑️</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <img src="https://cdn-icons-png.flaticon.com/512/3048/3048425.png" alt="Gestión Académica" class="service-image">
+                                <span class="service-name">Gestión Académica</span>
+                            </div>
+                        </td>
+                        <td>Administración Educativa</td>
+                        <td>$399/mes</td>
+                        <td><span class="status-badge status-active">Activo</span></td>
+                        <td>
+                            <div class="actions-cell">
+                                <button class="action-btn btn-edit" title="Editar">✏️</button>
+                                <button class="action-btn btn-delete" title="Eliminar">🗑️</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <img src="https://cdn-icons-png.flaticon.com/512/1087/1087815.png" alt="Educación Virtual" class="service-image">
+                                <span class="service-name">Educación Virtual</span>
+                            </div>
+                        </td>
+                        <td>E-Learning</td>
+                        <td>$259/mes</td>
+                        <td><span class="status-badge status-active">Activo</span></td>
+                        <td>
+                            <div class="actions-cell">
+                                <button class="action-btn btn-edit" title="Editar">✏️</button>
+                                <button class="action-btn btn-delete" title="Eliminar">🗑️</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <img src="images/icon-recursos-humanos.png" alt="Recursos Humanos" class="service-image">
+                                <span class="service-name">Recursos Humanos</span>
+                            </div>
+                        </td>
+                        <td>Gestión de Personal</td>
+                        <td>$279/mes</td>
+                        <td><span class="status-badge status-inactive">Inactivo</span></td>
+                        <td>
+                            <div class="actions-cell">
+                                <button class="action-btn btn-edit" title="Editar">✏️</button>
+                                <button class="action-btn btn-delete" title="Eliminar">🗑️</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script src="js/main.js"></script>
+</body>
+</html>

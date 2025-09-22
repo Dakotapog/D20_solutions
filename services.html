@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios - D10 Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <div class="logo-icon">D10</div>
+                <span class="logo-text">D10 Solutions</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="services.html" class="active">Servicios</a></li>
+                <li><a href="#instituciones">Instituciones</a></li>
+                <li><a href="#soporte">Soporte</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <a href="login.html" class="cta-button">Iniciar Sesión</a>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container">
+            <nav class="breadcrumb-nav">
+                <a href="index.html">Inicio</a>
+                <span>→</span>
+                <span>Servicios</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Nuestros <span class="highlight">Servicios</span></h1>
+            <p>Descubre todas las soluciones que D10 ofrece para transformar tu institución educativa</p>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="filters">
+        <div class="container">
+            <div class="filter-tabs">
+                <button class="filter-tab active">Todos</button>
+                <button class="filter-tab">Gestión</button>
+                <button class="filter-tab">Académico</button>
+                <button class="filter-tab">Virtual</button>
+                <button class="filter-tab">Comunicación</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="services-section">
+        <div class="container">
+            <div class="services-grid">
+                <!-- Servicio 1 -->
+                <div class="service-card" data-category="gestión">
+                    <div class="service-badge popular">Popular</div>
+                    <div class="service-icon">
+                        <img src="images/icon-gestion-comercial.png" alt="Gestión Comercial">
+                    </div>
+                    <h3>Gestión Comercial</h3>
+                    <p>Potencializa tu gestión comercial y obtén información para optimizar el seguimiento de prospectos</p>
+                    <div class="service-price">$299<span>/mes</span></div>
+                    <ul class="service-features">
+                        <li>CRM integrado</li>
+                        <li>Seguimiento de leads</li>
+                        <li>Reportes de ventas</li>
+                        <li>Dashboard analítico</li>
+                    </ul>
+                    <a href="service-detail.html" class="service-btn">Ver Detalles</a>
+                    <button class="service-btn-outline">Prueba Gratis</button>
+                </div>
+
+                <!-- Servicio 2 -->
+                <div class="service-card premium" data-category="gestión académico">
+                    <div class="service-badge premium">Premium</div>
+                    <div class="service-icon blue">
+                        <img src="images/icon-gestion-academica.png" alt="Gestión Académica">
+                    </div>
+                    <h3>Gestión Académica</h3>
+                    <p>Administra información académica desde matrículas hasta evaluaciones y programación de horarios</p>
+                    <div class="service-price">$399<span>/mes</span></div>
+                    <ul class="service-features">
+                        <li>Sistema de matrículas</li>
+                        <li>Programación horarios</li>
+                        <li>Registro de notas</li>
+                        <li>Evaluación docente</li>
+                    </ul>
+                    <a href="service-detail.html" class="service-btn">Ver Detalles</a>
+                    <button class="service-btn-outline">Prueba Gratis</button>
+                </div>
+
+                <!-- Servicio 3 -->
+                <div class="service-card" data-category="virtual">
+                    <div class="service-icon">
+                        <img src="images/icon-educacion-virtual.png" alt="Educación Virtual">
+                    </div>
+                    <h3>Educación Virtual</h3>
+                    <p>Facilita comunicación con contenidos dinámicos, publicación de anuncios y cuestionarios interactivos</p>
+                    <div class="service-price">$259<span>/mes</span></div>
+                    <ul class="service-features">
+                        <li>Aula virtual</li>
+                        <li>Contenidos multimedia</li>
+                        <li>Cuestionarios online</li>
+                        <li>Videoconferencias</li>
+                    </ul>
+                    <a href="service-detail.html" class="service-btn">Ver Detalles</a>
+                    <button class="service-btn-outline">Prueba Gratis</button>
+                </div>
+
+                <!-- Servicio 4 -->
+                <div class="service-card" data-category="gestión">
+                    <div class="service-icon">
+                        <img src="images/icon-bienestar.png" alt="Bienestar">
+                    </div>
+                    <h3>Bienestar Institucional</h3>
+                    <p>Promueve satisfacción estudiantil con encuestas, evaluaciones y acceso a bolsa de empleo</p>
+                    <div class="service-price">$199<span>/mes</span></div>
+                    <ul class="service-features">
+                        <li>Encuestas de satisfacción</li>
+                        <li>Bolsa de empleo</li>
+                        <li>Gestión de prácticas</li>
+                        <li>Portal estudiantes</li>
+                    </ul>
+                    <a href="service-detail.html" class="service-btn">Ver Detalles</a>
+                    <button class="service-btn-outline">Prueba Gratis</button>
+                </div>
+
+                <!-- Servicio 5 -->
+                <div class="service-card premium" data-category="gestión">
+                    <div class="service-badge premium">Premium</div>
+                    <div class="service-icon blue">
+                        <img src="images/icon-finanzas.png" alt="Finanzas">
+                    </div>
+                    <h3>Gestión Financiera</h3>
+                    <p>Controla cuentas por cobrar e ingresos con órdenes de pago, recibos y facturación automatizada</p>
+                    <div class="service-price">$359<span>/mes</span></div>
+                    <ul class="service-features">
+                        <li>Facturación automática</li>
+                        <li>Control cartera</li>
+                        <li>Reportes financieros</li>
+                        <li>Integración bancaria</li>
+                    </ul>
+                    <a href="service-detail.html" class="service-btn">Ver Detalles</a>
+                    <button class="service-btn-outline">Prueba Gratis</button>
+                </div>
+
+                <!-- Servicio 6 -->
+                <div class="service-card" data-category="comunicación">
+                    <div class="service-icon">
+                        <img src="images/icon-comunidad.png" alt="Comunidad">
+                    </div>
+                    <h3>Comunidad en Línea</h3>
+                    <p>Aumenta comunicación con chat institucional, SMS, app móvil y campañas de mailing dirigidas</p>
+                    <div class="service-price">$179<span>/mes</span></div>
+                    <ul class="service-features">
+                        <li>Chat institucional</li>
+                        <li>Mensajería SMS</li>
+                        <li>App móvil</li>
+                        <li>Campañas email</li>
+                    </ul>
+                    <a href="service-detail.html" class="service-btn">Ver Detalles</a>
+                    <button class="service-btn-outline">Prueba Gratis</button>
+                </div>
+
+                <!-- Servicio 7 -->
+                <div class="service-card" data-category="gestión">
+                    <div class="service-badge">Nuevo</div>
+                    <div class="service-icon">
+                        <img src="images/icon-reportes.png" alt="Reportes">
+                    </div>
+                    <h3>Sistema de Reportes</h3>
+                    <p>Genera reportes avanzados y dashboards interactivos con métricas clave de tu institución</p>
+                    <div class="service-price">$229<span>/mes</span></div>
+                    <ul class="service-features">
+                        <li>Dashboards personalizados</li>
+                        <li>Reportes automáticos</li>
+                        <li>Análisis predictivo</li>
+                        <li>Exportación datos</li>
+                    </ul>
+                    <a href="service-detail.html" class="service-btn">Ver Detalles</a>
+                    <button class="service-btn-outline">Prueba Gratis</button>
+                </div>
+
+                <!-- Servicio 8 -->
+                <div class="service-card" data-category="gestión">
+                    <div class="service-icon">
+                        <img src="images/icon-recursos.png" alt="Recursos">
+                    </div>
+                    <h3>Gestión de Recursos</h3>
+                    <p>Administra aulas, laboratorios, equipos y recursos físicos de manera eficiente y centralizada</p>
+                    <div class="service-price">$189<span>/mes</span></div>
+                    <ul class="service-features">
+                        <li>Reserva de aulas</li>
+                        <li>Control de equipos</li>
+                        <li>Inventario digital</li>
+                        <li>Mantenimientos</li>
+                    </ul>
+                    <a href="service-detail.html" class="service-btn">Ver Detalles</a>
+                    <button class="service-btn-outline">Prueba Gratis</button>
+                </div>
+
+                <!-- Servicio 9 -->
+                <div class="service-card" data-category="comunicación">
+                    <div class="service-icon">
+                        <img src="images/icon-portal-padres.png" alt="Portal Padres">
+                    </div>
+                    <h3>Portal de Padres</h3>
+                    <p>Conecta padres con el proceso educativo mediante notificaciones, calificaciones y comunicación directa</p>
+                    <div class="service-price">$149<span>/mes</span></div>
+                    <ul class="service-features">
+                        <li>Seguimiento académico</li>
+                        <li>Comunicación directa</li>
+                        <li>Notificaciones push</li>
+                        <li>Calendario eventos</li>
+                    </ul>
+                    <a href="service-detail.html" class="service-btn">Ver Detalles</a>
+                    <button class="service-btn-outline">Prueba Gratis</button>
+                </div>
+
+                <!-- Servicio 10 -->
+                <div class="service-card premium" data-category="gestión">
+                    <div class="service-badge premium">Premium</div>
+                    <div class="service-icon blue">
+                        <img src="images/icon-analytics.png" alt="Analytics">
+                    </div>
+                    <h3>Análisis y Métricas</h3>
+                    <p>Inteligencia artificial para análisis predictivo, métricas de rendimiento y toma de decisiones estratégicas</p>
+                    <div class="service-price">$449<span>/mes</span></div>
+                    <ul class="service-features">
+                        <li>IA predictiva</li>
+                        <li>Métricas avanzadas</li>
+                        <li>Business Intelligence</li>
+                        <li>Machine Learning</li>
+                    </ul>
+                    <a href="service-detail.html" class="service-btn">Ver Detalles</a>
+                    <button class="service-btn-outline">Prueba Gratis</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>¿Listo para transformar tu institución?</h2>
+            <p>Contacta con nuestros expertos y descubre cómo D10 puede impulsar tu crecimiento</p>
+            <div class="cta-buttons">
+                <button class="btn-white">Solicitar Demo</button>
+                <button class="btn-white">Hablar con Experto</button>
+            </div>
+        </div>
+    </section>
+    <script src="js/main.js"></script>
+</body>
+</html>
