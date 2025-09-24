@@ -20,8 +20,8 @@
             </div>
             <ul class="nav-menu">
                 <li><a href="index.html">Inicio</a></li>
-                <li><a href="#" class="active">Gestión Servicios</a></li>
-                <li><a href="#">Usuarios</a></li>
+                <li><a href="admin.html" class="active">Gestión Servicios</a></li>
+                <li><a href="users.html">Usuarios</a></li>
                 <li><a href="#">Reportes</a></li>
             </ul>
             <div class="user-section">
@@ -176,6 +176,23 @@
             </table>
         </section>
     </main>
+    <!-- Modal para Agregar/Editar Servicio -->
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Agregar/Editar Servicio</h2>
+            <form id="serviceForm">
+                <input type="hidden" id="serviceId">
+                <label for="serviceName">Nombre del Servicio:</label>
+                <input type="text" id="serviceName" required>
+                <label for="serviceDescription">Descripción:</label>
+                <textarea id="serviceDescription" required></textarea>
+                <label for="servicePrice">Precio:</label>
+                <input type="number" id="servicePrice" step="0.01" required>
+                <button type="submit">Guardar Servicio</button>
+            </form>
+        </div>
+    </div>
     <script src="js/main.js"></script>
 </body>
 </html>

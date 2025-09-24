@@ -1,1 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+
+# Base de datos
+*.db
+*.sqlite
+*.sqlite3
+
+# Archivo original del usuario
 Entregas Front End 2025.pdf
