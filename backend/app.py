@@ -31,14 +31,16 @@ class Service(db.Model):
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text, nullable=False)
     price = db.Column(db.Float, nullable=False)
+    quantity = db.Column(db.Integer, nullable=False, default=10)  # Cantidad disponible
     category = db.Column(db.String(100), nullable=False, default='general')
     icon_url = db.Column(db.String(200), nullable=False, default='images/icon-recursos.png')
     badge = db.Column(db.String(50), nullable=True)
 
-    def __init__(self, name, description, price, category, icon_url, badge=None):
+    def __init__(self, name, description, price, quantity, category, icon_url, badge=None):
         self.name = name
         self.description = description
         self.price = price
+        self.quantity = quantity
         self.category = category
         self.icon_url = icon_url
         self.badge = badge
@@ -79,19 +81,19 @@ with app.app_context():
     # Crear servicios de prueba si no existen
     if Service.query.count() == 0:
         initial_services = [
-            {'name': 'Gestión Comercial', 'description': 'Potencializa tu gestión comercial y obtén información para optimizar el seguimiento de prospectos.', 'price': 299.0, 'category': 'gestión', 'icon_url': 'images/icon-gestion-comercial.png', 'badge': 'Popular'},
-            {'name': 'Gestión Académica', 'description': 'Administra información académica desde matrículas hasta evaluaciones y programación de horarios.', 'price': 399.0, 'category': 'gestión académico', 'icon_url': 'images/icon-gestion-academica.png', 'badge': 'Premium'},
-            {'name': 'Educación Virtual', 'description': 'Facilita comunicación con contenidos dinámicos, publicación de anuncios y cuestionarios interactivos.', 'price': 259.0, 'category': 'virtual', 'icon_url': 'images/icon-educacion-virtual.png', 'badge': None},
-            {'name': 'Bienestar Institucional', 'description': 'Promueve satisfacción estudiantil con encuestas, evaluaciones y acceso a bolsa de empleo.', 'price': 199.0, 'category': 'gestión', 'icon_url': 'images/icon-bienestar.png', 'badge': None},
-            {'name': 'Gestión Financiera', 'description': 'Controla cuentas por cobrar e ingresos con órdenes de pago, recibos y facturación automatizada.', 'price': 359.0, 'category': 'gestión', 'icon_url': 'images/icon-finanzas.png', 'badge': 'Premium'},
-            {'name': 'Comunidad en Línea', 'description': 'Aumenta comunicación con chat institucional, SMS, app móvil y campañas de mailing dirigidas.', 'price': 179.0, 'category': 'comunicación', 'icon_url': 'images/icon-comunidad.png', 'badge': None},
-            {'name': 'Sistema de Reportes', 'description': 'Genera reportes avanzados y dashboards interactivos con métricas clave de tu institución.', 'price': 229.0, 'category': 'gestión', 'icon_url': 'images/icon-reportes.png', 'badge': 'Nuevo'},
-            {'name': 'Gestión de Recursos', 'description': 'Administra aulas, laboratorios, equipos y recursos físicos de manera eficiente y centralizada.', 'price': 189.0, 'category': 'gestión', 'icon_url': 'images/icon-recursos.png', 'badge': None},
-            {'name': 'Portal de Padres', 'description': 'Conecta padres con el proceso educativo mediante notificaciones, calificaciones y comunicación directa.', 'price': 149.0, 'category': 'comunicación', 'icon_url': 'images/icon-portal-padres.png', 'badge': None},
-            {'name': 'Análisis y Métricas', 'description': 'Inteligencia artificial para análisis predictivo, métricas de rendimiento y toma de decisiones estratégicas.', 'price': 449.0, 'category': 'gestión', 'icon_url': 'images/icon-analytics.png', 'badge': 'Premium'}
+            {'name': 'Gestión Comercial', 'description': 'Potencializa tu gestión comercial...', 'price': 299.0, 'quantity': 15, 'category': 'gestión', 'icon_url': 'images/icon-gestion-comercial.png', 'badge': 'Popular'},
+            {'name': 'Gestión Académica', 'description': 'Administra información académica...', 'price': 399.0, 'quantity': 10, 'category': 'gestión académico', 'icon_url': 'images/icon-gestion-academica.png', 'badge': 'Premium'},
+            {'name': 'Educación Virtual', 'description': 'Facilita comunicación con contenidos...', 'price': 259.0, 'quantity': 25, 'category': 'virtual', 'icon_url': 'images/icon-educacion-virtual.png', 'badge': None},
+            {'name': 'Bienestar Institucional', 'description': 'Promueve satisfacción estudiantil...', 'price': 199.0, 'quantity': 30, 'category': 'gestión', 'icon_url': 'images/icon-bienestar.png', 'badge': None},
+            {'name': 'Gestión Financiera', 'description': 'Controla cuentas por cobrar...', 'price': 359.0, 'quantity': 12, 'category': 'gestión', 'icon_url': 'images/icon-finanzas.png', 'badge': 'Premium'},
+            {'name': 'Comunidad en Línea', 'description': 'Aumenta comunicación con chat...', 'price': 179.0, 'quantity': 50, 'category': 'comunicación', 'icon_url': 'images/icon-comunidad.png', 'badge': None},
+            {'name': 'Sistema de Reportes', 'description': 'Genera reportes avanzados...', 'price': 229.0, 'quantity': 20, 'category': 'gestión', 'icon_url': 'images/icon-reportes.png', 'badge': 'Nuevo'},
+            {'name': 'Gestión de Recursos', 'description': 'Administra aulas, laboratorios...', 'price': 189.0, 'quantity': 18, 'category': 'gestión', 'icon_url': 'images/icon-recursos.png', 'badge': None},
+            {'name': 'Portal de Padres', 'description': 'Conecta padres con el proceso...', 'price': 149.0, 'quantity': 40, 'category': 'comunicación', 'icon_url': 'images/icon-portal-padres.png', 'badge': None},
+            {'name': 'Análisis y Métricas', 'description': 'Inteligencia artificial para análisis...', 'price': 449.0, 'quantity': 8, 'category': 'gestión', 'icon_url': 'images/icon-analytics.png', 'badge': 'Premium'}
         ]
         for s in initial_services:
-            db.session.add(Service(name=s['name'], description=s['description'], price=s['price'], category=s['category'], icon_url=s['icon_url'], badge=s['badge']))
+            db.session.add(Service(name=s['name'], description=s['description'], price=s['price'], quantity=s['quantity'], category=s['category'], icon_url=s['icon_url'], badge=s['badge']))
         db.session.commit()
         print(f"INFO: {len(initial_services)} servicios de prueba creados.")
 
@@ -110,35 +112,16 @@ def home():
 def auth_login():
     try:
         data = request.get_json()
-        
-        if not data:
-            return jsonify({"error": "No se enviaron datos"}), 400
-            
+        if not data: return jsonify({"error": "No se enviaron datos"}), 400
         email = data.get('email')
         password = data.get('password')
-
-        if not email or not password:
-            return jsonify({"error": "Email y contraseña son requeridos"}), 400
-
+        if not email or not password: return jsonify({"error": "Email y contraseña son requeridos"}), 400
         user = User.query.filter_by(email=email).first()
-
-        # Verificación simple de contraseña
         if user and password == "adminpass":
-            # Simular token (en producción usarías JWT real)
             fake_token = f"simple_token_{user.id}_{user.email}"
-            
-            return jsonify({
-                "message": "Inicio de sesión exitoso",
-                "token": fake_token,
-                "user": {
-                    "id": user.id,
-                    "username": user.username,
-                    "email": user.email
-                }
-            }), 200
+            return jsonify({"message": "Inicio de sesión exitoso", "token": fake_token, "user": {"id": user.id, "username": user.username, "email": user.email}}), 200
         else:
             return jsonify({"error": "Credenciales inválidas"}), 401
-            
     except Exception as e:
         print(f"Error en login: {e}")
         return jsonify({"error": "Error interno del servidor"}), 500
@@ -149,12 +132,8 @@ def auth_verify():
     auth_header = request.headers.get('Authorization')
     if not auth_header or not auth_header.startswith('Bearer '):
         return jsonify({"error": "Token no proporcionado o malformado"}), 401
-
     token = auth_header.split(' ')[1]
-
-    # Verificación simple del token (en un caso real, se decodificaría y validaría un JWT)
     if token.startswith('simple_token_'):
-        # Opcionalmente, podríamos extraer el user_id y verificar si el usuario aún existe
         return jsonify({"message": "Token válido"}), 200
     else:
         return jsonify({"error": "Token inválido o expirado"}), 401
@@ -163,14 +142,14 @@ def auth_verify():
 @app.route('/services', methods=['POST'])
 def create_service():
     data = request.get_json()
-    if not data or not all(key in data for key in ['name', 'description', 'price']):
+    if not data or not all(key in data for key in ['name', 'description', 'price', 'quantity']):
         return jsonify({"error": "Datos incompletos para crear el servicio"}), 400
-
     try:
         new_service = Service(
             name=data['name'], 
             description=data['description'], 
             price=float(data['price']), 
+            quantity=int(data['quantity']),
             category=data.get('category', 'general'),
             icon_url=data.get('icon_url', 'images/icon-recursos.png'),
             badge=data.get('badge', None)
@@ -179,7 +158,7 @@ def create_service():
         db.session.commit()
         return jsonify({"message": "Servicio creado exitosamente", "service_id": new_service.id}), 201
     except ValueError:
-        return jsonify({"error": "El precio debe ser un número válido"}), 400
+        return jsonify({"error": "El precio y la cantidad deben ser números válidos"}), 400
     except Exception as e:
         print(f"Error creando servicio: {e}")
         return jsonify({"error": "Error interno del servidor"}), 500
@@ -187,7 +166,7 @@ def create_service():
 @app.route('/services', methods=['GET'])
 def get_services():
     try:
-        services = Service.query.all()
+        services = Service.query.order_by(Service.id.desc()).all()        
         output = []
         for service in services:
             service_data = {
@@ -195,6 +174,7 @@ def get_services():
                 'name': service.name, 
                 'description': service.description, 
                 'price': service.price,
+                'quantity': service.quantity,
                 'category': service.category,
                 'icon_url': service.icon_url,
                 'badge': service.badge
@@ -214,6 +194,7 @@ def get_service(service_id):
             'name': service.name, 
             'description': service.description, 
             'price': service.price,
+            'quantity': service.quantity,
             'category': service.category,
             'icon_url': service.icon_url,
             'badge': service.badge
@@ -227,7 +208,6 @@ def update_service(service_id):
     try:
         service = Service.query.get_or_404(service_id)
         data = request.get_json()
-        
         if not data:
             return jsonify({"error": "No se proporcionaron datos para actualizar"}), 400
 
@@ -242,6 +222,12 @@ def update_service(service_id):
                 service.price = float(data['price'])
             except ValueError:
                 return jsonify({"error": "El precio debe ser un número válido"}), 400
+        
+        if 'quantity' in data:
+            try:
+                service.quantity = int(data['quantity'])
+            except ValueError:
+                return jsonify({"error": "La cantidad debe ser un número entero válido"}), 400
         
         db.session.commit()
         return jsonify({"message": "Servicio actualizado exitosamente"})
@@ -260,19 +246,16 @@ def delete_service(service_id):
         print(f"Error eliminando servicio: {e}")
         return jsonify({"error": "Error interno del servidor"}), 500
 
-# --- Rutas para Usuarios ---
+# --- Rutas para Usuarios (sin cambios) ---
 @app.route('/users', methods=['POST'])
 def create_user():
     try:
         data = request.get_json()
         if not data or not all(key in data for key in ['username', 'email']):
             return jsonify({"error": "Datos incompletos para crear el usuario"}), 400
-
-        # Verificar si el usuario ya existe
         existing_user = User.query.filter((User.username == data['username']) | (User.email == data['email'])).first()
         if existing_user:
             return jsonify({"error": "El usuario o email ya existe"}), 409
-
         new_user = User(username=data['username'], email=data['email'])
         db.session.add(new_user)
         db.session.commit()
@@ -308,10 +291,8 @@ def update_user(user_id):
     try:
         user = User.query.get_or_404(user_id)
         data = request.get_json()
-        
         if not data:
             return jsonify({"error": "No se proporcionaron datos para actualizar"}), 400
-
         user.username = data.get('username', user.username)
         user.email = data.get('email', user.email)
         db.session.commit()

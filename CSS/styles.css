@@ -2319,3 +2319,82 @@ body.login-page {
         color: #86efac;
     }
 }
+
+/*
+========================================
+    ESTILOS PÁGINA DE GESTIÓN DE USUARIOS
+========================================
+*/
+
+/* Estilo para el botón 'Agregar Usuario' */
+.add-user-btn {
+    background: var(--secondary); /* Usamos el color azul secundario */
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 14px;
+}
+
+.add-user-btn:hover {
+    background: #3A7BC8; /* Un azul un poco más oscuro al pasar el mouse */
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Contenedor de las herramientas (la barra de búsqueda) */
+.management-tools {
+    background: var(--bg-primary);
+    padding: 1.5rem 2rem;
+    border-radius: 15px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: flex-end; /* Alinea la búsqueda a la derecha */
+}
+
+/* Contenedor específico de la barra de búsqueda */
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 350px; /* Ancho máximo para la barra */
+}
+
+/* Estilo para el campo de texto de búsqueda */
+.search-input {
+    width: 100%;
+    padding: 0.8rem 1rem 0.8rem 2.5rem; /* Espacio a la izquierda para el ícono */
+    border: 2px solid var(--border);
+    border-radius: 20px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    background: var(--bg-light);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--secondary); /* Borde azul al hacer clic */
+    background: var(--bg-primary);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+/* Estilo para el ícono de la lupa (¡ESTO ARREGLA LA LUPA GIGANTE!) */
+.search-icon {
+    position: absolute;
+    left: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    width: 20px;  /* Se define un ancho fijo */
+    height: 20px; /* Se define un alto fijo */
+    pointer-events: none; /* Permite hacer clic en el campo de texto aunque el ícono esté encima */
+}

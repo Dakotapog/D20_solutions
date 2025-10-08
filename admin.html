@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Administración | D10 Solutions</title>
+    <title>Panel de Administración | D20 Solutions</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     
@@ -14,8 +14,8 @@
     <header class="header">
         <nav class="navbar">
             <div class="logo">
-                <div class="logo-icon">D10</div>
-                <span class="logo-text">D10 Solutions</span>
+                <div class="logo-icon">D20</div>
+                <span class="logo-text">D20 Solutions</span>
                 <span class="admin-badge">🔒 ADMIN</span>
             </div>
             <ul class="nav-menu">
@@ -99,79 +99,13 @@
                         <th>Servicio</th>
                         <th>Categoría</th>
                         <th>Precio</th>
+                        <th>Cantidad</th>
                         <th>Estado</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <div style="display: flex; align-items: center; gap: 1rem;">
-                                <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Gestión Comercial" class="service-image">
-                                <span class="service-name">Gestión Comercial</span>
-                            </div>
-                        </td>
-                        <td>CRM y Ventas</td>
-                        <td>$299/mes</td>
-                        <td><span class="status-badge status-active">Activo</span></td>
-                        <td>
-                            <div class="actions-cell">
-                                <button class="action-btn btn-edit" title="Editar">✏️</button>
-                                <button class="action-btn btn-delete" title="Eliminar">🗑️</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div style="display: flex; align-items: center; gap: 1rem;">
-                                <img src="https://cdn-icons-png.flaticon.com/512/3048/3048425.png" alt="Gestión Académica" class="service-image">
-                                <span class="service-name">Gestión Académica</span>
-                            </div>
-                        </td>
-                        <td>Administración Educativa</td>
-                        <td>$399/mes</td>
-                        <td><span class="status-badge status-active">Activo</span></td>
-                        <td>
-                            <div class="actions-cell">
-                                <button class="action-btn btn-edit" title="Editar">✏️</button>
-                                <button class="action-btn btn-delete" title="Eliminar">🗑️</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div style="display: flex; align-items: center; gap: 1rem;">
-                                <img src="https://cdn-icons-png.flaticon.com/512/1087/1087815.png" alt="Educación Virtual" class="service-image">
-                                <span class="service-name">Educación Virtual</span>
-                            </div>
-                        </td>
-                        <td>E-Learning</td>
-                        <td>$259/mes</td>
-                        <td><span class="status-badge status-active">Activo</span></td>
-                        <td>
-                            <div class="actions-cell">
-                                <button class="action-btn btn-edit" title="Editar">✏️</button>
-                                <button class="action-btn btn-delete" title="Eliminar">🗑️</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div style="display: flex; align-items: center; gap: 1rem;">
-                                <img src="images/icon-recursos-humanos.png" alt="Recursos Humanos" class="service-image">
-                                <span class="service-name">Recursos Humanos</span>
-                            </div>
-                        </td>
-                        <td>Gestión de Personal</td>
-                        <td>$279/mes</td>
-                        <td><span class="status-badge status-inactive">Inactivo</span></td>
-                        <td>
-                            <div class="actions-cell">
-                                <button class="action-btn btn-edit" title="Editar">✏️</button>
-                                <button class="action-btn btn-delete" title="Eliminar">🗑️</button>
-                            </div>
-                        </td>
-                    </tr>
+                    <!-- Las filas se generarán dinámicamente con JavaScript -->
                 </tbody>
             </table>
         </section>
@@ -189,6 +123,14 @@
                 <textarea id="serviceDescription" required></textarea>
                 <label for="servicePrice">Precio:</label>
                 <input type="number" id="servicePrice" step="0.01" required>
+                <label for="serviceQuantity">Cantidad:</label>
+                <input type="number" id="serviceQuantity" required>
+                <label for="serviceCategory">Categoría:</label>
+                <input type="text" id="serviceCategory">
+                <label for="serviceIconUrl">URL del Icono:</label>
+                <input type="text" id="serviceIconUrl">
+                <label for="serviceBadge">Insignia (Badge):</label>
+                <input type="text" id="serviceBadge">
                 <button type="submit">Guardar Servicio</button>
             </form>
         </div>

@@ -1,6 +1,11 @@
+
 // ========================================
 // SISTEMA DE AUTENTICACIÓN PERSISTENTE
 // ========================================
+
+// URL del backend. Cambiar a la URL de producción al desplegar.
+const API_BASE_URL = 'http://127.0.0.1:5001'; // URL local para desarrollo
+// const API_BASE_URL = 'https://tu-backend-url-aqui.com'; // URL de producción (ejemplo)
 
 // Objeto global para manejar la autenticación de manera persistente
 window.AuthManager = (function() {
@@ -98,7 +103,7 @@ window.AuthManager = (function() {
                 throw new Error('No autenticado');
             }
 
-            const response = await fetch('http://127.0.0.1:5001/auth/verify', {
+            const response = await fetch(`${API_BASE_URL}/auth/verify`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${authToken}`,
@@ -210,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function() {
             showAuthProgress();
 
             try {
-                const response = await fetch('http://127.0.0.1:5001/auth/login', {
+                const response = await fetch(`${API_BASE_URL}/auth/login`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -478,6 +483,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const serviceNameInput = document.getElementById('serviceName');
         const serviceDescriptionInput = document.getElementById('serviceDescription');
         const servicePriceInput = document.getElementById('servicePrice');
+        const serviceQuantityInput = document.getElementById('serviceQuantity');
+        const serviceCategoryInput = document.getElementById('serviceCategory');
+        const serviceIconUrlInput = document.getElementById('serviceIconUrl');
+        const serviceBadgeInput = document.getElementById('serviceBadge');
 
         // Show Modal
         function openServiceModal(service = null) {
@@ -488,12 +497,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     serviceNameInput.value = service.name;
                     serviceDescriptionInput.value = service.description;
                     servicePriceInput.value = service.price;
+                    serviceQuantityInput.value = service.quantity;
+                    serviceCategoryInput.value = service.category;
+                    serviceIconUrlInput.value = service.icon_url;
+                    serviceBadgeInput.value = service.badge || '';
                     serviceModal.querySelector('h2').textContent = 'Editar Servicio';
                 } else {
+                    serviceForm.reset();
                     serviceIdInput.value = '';
-                    serviceNameInput.value = '';
-                    serviceDescriptionInput.value = '';
-                    servicePriceInput.value = '';
                     serviceModal.querySelector('h2').textContent = 'Agregar Servicio';
                 }
             }
@@ -525,12 +536,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!servicesTableBody) return;
             
             try {
-                const response = await authenticatedFetch('http://127.0.0.1:5001/services');
+                const response = await authenticatedFetch(`${API_BASE_URL}/services`);
                 const data = await response.json();
                 renderServicesTable(data.services);
             } catch (error) {
                 console.error('Error fetching services:', error);
-                servicesTableBody.innerHTML = '<tr><td colspan="5">Error al cargar los servicios.</td></tr>';
+                servicesTableBody.innerHTML = '<tr><td colspan="6">Error al cargar los servicios.</td></tr>';
                 showToast('Error al cargar los servicios', 'error');
             }
         }
@@ -539,7 +550,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!servicesTableBody) return;
             servicesTableBody.innerHTML = ''; // Clear existing static rows
             if (services.length === 0) {
-                servicesTableBody.innerHTML = '<tr><td colspan="5">No hay servicios disponibles.</td></tr>';
+                servicesTableBody.innerHTML = '<tr><td colspan="6">No hay servicios disponibles.</td></tr>';
                 return;
             }
 
@@ -550,12 +561,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 row.innerHTML = `
                     <td>
                         <div style="display: flex; align-items: center; gap: 1rem;">
-                            <img src="https://via.placeholder.com/40" alt="${service.name}" class="service-image">
+                            <img src="${service.icon_url || 'https://via.placeholder.com/40'}" alt="${service.name}" class="service-image">
                             <span class="service-name">${service.name}</span>
                         </div>
                     </td>
-                    <td>${service.description.substring(0, 50)}...</td>
+                    <td>${service.category}</td>
                     <td>$${service.price.toFixed(2)}</td>
+                    <td>${service.quantity}</td>
                     <td><span class="status-badge status-active">Activo</span></td>
                     <td>
                         <div class="actions-cell">
@@ -573,9 +585,9 @@ document.addEventListener('DOMContentLoaded', function() {
         function attachServiceActionListeners() {
             document.querySelectorAll('.btn-edit').forEach(button => {
                 button.onclick = async (e) => {
-                    const serviceId = e.target.dataset.id;
+                    const serviceId = e.target.closest('button').dataset.id;
                     try {
-                        const response = await authenticatedFetch(`http://127.0.0.1:5001/services/${serviceId}`);
+                        const response = await authenticatedFetch(`${API_BASE_URL}/services/${serviceId}`);
                         const service = await response.json();
                         openServiceModal(service);
                     } catch (error) {
@@ -587,10 +599,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
             document.querySelectorAll('.btn-delete').forEach(button => {
                 button.onclick = async (e) => {
-                    const serviceId = e.target.dataset.id;
+                    const serviceId = e.target.closest('button').dataset.id;
                     if (confirm(`¿Estás seguro de que quieres eliminar el servicio con ID ${serviceId}?`)) {
                         try {
-                            const response = await authenticatedFetch(`http://127.0.0.1:5001/services/${serviceId}`, {
+                            const response = await authenticatedFetch(`${API_BASE_URL}/services/${serviceId}`, {
                                 method: 'DELETE'
                             });
                             if (response.ok) {
@@ -617,20 +629,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 const name = serviceNameInput.value.trim();
                 const description = serviceDescriptionInput.value.trim();
                 const price = parseFloat(servicePriceInput.value);
+                const quantity = parseInt(serviceQuantityInput.value, 10);
+                const category = serviceCategoryInput.value.trim();
+                const icon_url = serviceIconUrlInput.value.trim();
+                const badge = serviceBadgeInput.value.trim();
 
                 // Validación
-                if (!name || !description || isNaN(price) || price <= 0) {
+                if (!name || !description || isNaN(price) || price <= 0 || isNaN(quantity) || quantity < 0) {
                     showToast('Por favor completa todos los campos correctamente', 'error');
                     return;
                 }
 
+                const serviceData = { name, description, price, quantity, category, icon_url, badge };
+
                 const method = id ? 'PUT' : 'POST';
-                const url = id ? `http://127.0.0.1:5001/services/${id}` : 'http://127.0.0.1:5001/services';
+                const url = id ? `${API_BASE_URL}/services/${id}` : `${API_BASE_URL}/services`;
 
                 try {
                     const response = await authenticatedFetch(url, {
                         method: method,
-                        body: JSON.stringify({ name, description, price })
+                        body: JSON.stringify(serviceData)
                     });
 
                     if (response.ok) {
@@ -700,7 +718,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         fetchUsers: async function() {
             try {
-                const response = await authenticatedFetch('http://127.0.0.1:5001/users');
+                const response = await authenticatedFetch(`${API_BASE_URL}/users`);
                 const data = await response.json();
                 this.allUsers = data.users;
                 this.applyFiltersAndSort();
@@ -772,7 +790,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const userId = e.target.dataset.id;
                     if (confirm(`¿Estás seguro de que quieres eliminar este usuario?`)) {
                         try {
-                            await authenticatedFetch(`http://127.0.0.1:5001/users/${userId}`, { method: 'DELETE' });
+                            await authenticatedFetch(`${API_BASE_URL}/users/${userId}`, { method: 'DELETE' });
                             showToast('Usuario eliminado', 'success');
                             this.fetchUsers();
                         } catch (error) {
@@ -795,7 +813,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             const method = id ? 'PUT' : 'POST';
-            const url = id ? `http://127.0.0.1:5001/users/${id}` : 'http://127.0.0.1:5001/users';
+            const url = id ? `${API_BASE_URL}/users/${id}` : `${API_BASE_URL}/users`;
 
             try {
                 const response = await authenticatedFetch(url, {
@@ -877,7 +895,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 try {
                     // Intentar hacer logout en el servidor
                     if (window.AuthManager.isAuthenticated()) {
-                        await authenticatedFetch('http://127.0.0.1:5001/auth/logout', {
+                        await authenticatedFetch(`${API_BASE_URL}/auth/logout`, {
                             method: 'POST'
                         });
                     }
@@ -1128,15 +1146,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // CARGA DINÁMICA PARA PÁGINAS PÚBLICAS
     // ========================================
 
-    // Cargar servicios en services.html
-    if (window.location.pathname.includes('services.html')) {
+    // Cargar servicios en index.html y services.html
+    if (window.location.pathname.includes('services.html') || window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/')) {
         const servicesGrid = document.querySelector('.services-grid');
         if (servicesGrid) {
-            fetch('http://127.0.0.1:5001/services')
+            fetch(`${API_BASE_URL}/services`)
                 .then(response => response.json())
                 .then(data => {
                     servicesGrid.innerHTML = ''; // Limpiar contenido estático
-                    data.services.forEach(service => {
+                    
+                    // La variable 'data.services' ya contiene la lista completa y ordenada
+                    const servicesToRender = data.services;                 
+
+
+                    
+
+                    servicesToRender.forEach(service => {
                         // Determinar la clase de la insignia
                         let badgeClass = '';
                         if (service.badge) {
@@ -1189,7 +1214,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const serviceId = params.get('id');
 
         if (serviceId) {
-            fetch(`http://127.0.0.1:5001/services/${serviceId}`)
+            fetch(`${API_BASE_URL}/services/${serviceId}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Servicio no encontrado');
@@ -1203,6 +1228,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.querySelector('.service-info-section h1').textContent = service.name;
                     document.querySelector('.service-subtitle').textContent = service.description;
                     document.querySelector('.price-value').textContent = `$${service.price}`;
+                    if (document.getElementById('service-quantity')) {
+                        document.getElementById('service-quantity').textContent = service.quantity;
+                    }
                     // ... y así sucesivamente para los demás campos que quieras actualizar.
                 })
                 .catch(error => {
