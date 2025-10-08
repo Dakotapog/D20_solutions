@@ -1,0 +1,24 @@
+-----------------------------------------
+ENTREGA FINAL - D10 SOLUTIONS
+Autor: David Alberto Coronado Tabares
+Grupo: B02 / Subgrupo 18
+Materia: Front End
+Docente: John Olarte
+-----------------------------------------
+
+🔗 REPOSITORIO DEL PROYECTO
+https://github.com/Dakotapog/D20_solutions.git
+
+🌐 FRONTEND FUNCIONANDO (GitHub Pages)
+https://dakotapog.github.io/D20_solutions/
+
+🖥️ BACKEND FUNCIONANDO (Render)
+https://d20-solutions.onrender.com
+
+📘 DOCUMENTACIÓN (Manual e Instrucciones)
+Incluidos en los archivos:
+- MANUAL.md  → Descripción detallada de 28 funciones
+- DEPLOY.md  → Pasos de despliegue y conexión frontend-backend
+- README.md  → Descripción general del sistema
+
+-----------------------------------------
