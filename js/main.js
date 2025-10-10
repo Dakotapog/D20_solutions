@@ -4,7 +4,7 @@
 // ========================================
 
 // URL del backend. Cambiar a la URL de producción al desplegar.
-const API_BASE_URL = 'http://127.0.0.1:5001'; // URL local para desarrollo
+const API_URL = 'https://d20-solutions.onrender.com'; // URL local para desarrollo
 // const API_BASE_URL = 'https://tu-backend-url-aqui.com'; // URL de producción (ejemplo)
 
 // Objeto global para manejar la autenticación de manera persistente
